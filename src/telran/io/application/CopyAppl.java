@@ -1,4 +1,4 @@
-package telran.io.test;
+package telran.io.application;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,7 +7,7 @@ import java.time.temporal.ChronoUnit;
 import java.io.*;
 public class CopyAppl {
 
-	private static final int BUFFER_SIZE = 1024 * 1024 * 1024;
+	private static final int BUFFER_SIZE = 100;
 
 	public static void main(String[] args) {
 		//args[0] - source file
