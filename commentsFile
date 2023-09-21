@@ -1,0 +1,4 @@
+	Application for code comments separation
+	args[0] - path to file with code and comments
+	args[1] - path to file with only code
+	args[2] - path to file with only comments
