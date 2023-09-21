@@ -13,9 +13,7 @@ public class CopyAppl {
 		//args[0] - source file
 		//args[1] - destination file
 		//args[2] - "overwrite" optional
-		//TODO write application for copying from source file to destination file
-		//Implementation Requirement: to use while cycle with read call
-		//main must not contain throws declaration
+		
 		if(args.length < 2 ) {
 			System.out.println("too few arguments ;  usage: <args[0] - source file;"
 					+ "args[1] - destination file; "
