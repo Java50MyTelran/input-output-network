@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.*;
 
@@ -93,6 +94,41 @@ class CompanyTests {
 	@Order(1)
 	void testSave() {
 		company.save(TEST_DATA);
+	}
+	//Tests of CW/HW #34
+	@Test
+	void testGetDepartmentSalaryDistribution() {
+		//TODO
+	}
+	@Test
+	void testGetSalaryDistribution() {
+		company.addEmployee(new Employee(ID_NOT_EXIST, "name", DEP1, 9999, DATE1));
+		SalaryDistribution sd1 = new SalaryDistribution(5000, 10000, 3);
+		SalaryDistribution sd2 = new SalaryDistribution(10000, 15000, 2);
+		SalaryDistribution sd3 = new SalaryDistribution(15000, 20000, 1);
+		List<SalaryDistribution> expected = List.of(sd1,sd2,sd3);
+		List<SalaryDistribution> actual = company.getSalaryDistribution(5000);
+		assertIterableEquals(expected, actual);
+	}
+	@Test
+	void testGetEmployeesByDepartment() {
+		//TODO
+	}
+	@Test
+	void testGetEmployeesBySalary(){
+		//TODO
+	}
+	@Test
+	void testGetEmployeesByAge(){
+		//TODO
+	}
+	@Test
+	void testUpdateSalary() {
+		//TODO
+	}
+	@Test
+	void testUpdateDepartment() {
+		//TODO
 	}
 
 }
