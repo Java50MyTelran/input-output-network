@@ -37,7 +37,7 @@ class InputOutputTest {
 		io.writeObjectLine(empl);
 	}
 	@Test
-	@Disabled
+	//@Disabled
 	void testReadEmployeeBySeparateField() {
 		
 		//id in range [100000-999999]

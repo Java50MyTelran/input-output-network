@@ -96,7 +96,7 @@ public interface InputOutput {
 			LocalDate res = LocalDate.parse(string);
 			if(res.isBefore(min) || res.isAfter(max)) {
 				throw new IllegalArgumentException
-				(String.format("Date should be in the range from %s to %s", min, max));
+				(String.format("Date must be in the range from %s to %s", min, max));
 			}
 			return res;
 		});
