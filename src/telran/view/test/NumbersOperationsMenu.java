@@ -7,7 +7,7 @@ import telran.view.*;
 
 public class NumbersOperationsMenu {
 	static String name;
-public static Item getOperationsItem(String name) {
+public static Item getNumberOperationsItem(String name) {
 	NumbersOperationsMenu.name = name;
 	return Item.of(name, NumbersOperationsMenu::performMethod);
 	
@@ -28,7 +28,11 @@ static void performMethod(InputOutput io1) {
 			Item.of("Subtract two numbers", io -> twoNumbersAction(io, (a,b) -> a - b)),
 			Item.of("Divide two numbers", io -> twoNumbersAction(io, (a,b) -> a / b)),
 			Item.of("Multiply two numbers", io -> twoNumbersAction(io, (a,b) -> a * b)),
-			
+			Item.of("Percent of part from whole", io -> {
+				double part = io.readDouble("Enter part as a number", "Wrong number");
+				double whole = io.readDouble("Enter whole as a number", "Wrong number");
+				io.writeObjectLine(part / whole * 100);
+			}),
 			Item.exit()
 		};
 			Menu menu = new Menu(name, items);

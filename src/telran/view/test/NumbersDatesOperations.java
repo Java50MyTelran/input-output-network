@@ -16,7 +16,7 @@ public class NumbersDatesOperations {
 
 	private static Item[] getItems() {
 		Item items[] = {
-			NumbersOperationsMenu.getOperationsItem( "Number Operations"),
+			NumbersOperationsMenu.getNumberOperationsItem( "Number Operations"),
 			DatesOperationsMenu.getDateOperationsItem("Date Operations"),
 			Item.exit()
 		};
