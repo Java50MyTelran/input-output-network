@@ -12,8 +12,8 @@ public class DatesOperationsMenu {
 	static PrintStream writer;
 	static BufferedReader reader;
 public static Item getDateOperationsItem(String name, PrintStream writer, BufferedReader reader) {
-	NumbersOperationsMenu.writer = writer;
-	NumbersOperationsMenu.reader = reader;
+	DatesOperationsMenu.writer = writer;
+	DatesOperationsMenu.reader = reader;
 	return Item.of(name, io -> {
 		Item items[] = {
 			Item.of("Date after a given number of days", DatesOperationsMenu::dateAdding),
