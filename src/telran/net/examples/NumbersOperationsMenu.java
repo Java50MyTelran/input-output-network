@@ -1,18 +1,15 @@
 package telran.net.examples;
 
-import java.util.function.BinaryOperator;
-
+import telran.net.NetworkHandler;
 import telran.view.*;
-import java.io.*;
 
 public class NumbersOperationsMenu {
+	static NetworkHandler handler;
 	static String name;
-	static PrintStream writer;
-	static BufferedReader reader;
-public static Item getNumberOperationsItem(String name, PrintStream writer, BufferedReader reader) {
+public static Item getNumberOperationsItem(String name, NetworkHandler handler) {
+	NumbersOperationsMenu.handler = handler;
 	NumbersOperationsMenu.name = name;
-	NumbersOperationsMenu.writer = writer;
-	NumbersOperationsMenu.reader = reader;
+	
 	return Item.of(name, NumbersOperationsMenu::performMethod);
 	
 	
@@ -22,12 +19,7 @@ static void twoNumbersAction(InputOutput io,
 		String operation) {
 	double firstNumber = io.readDouble("Enter first number", "no number");
 	double secondNumber = io.readDouble("Enter second number","no number");
-	writer.println(String.format("numbers#%s#%f#%f", operation, firstNumber, secondNumber));
-	try {
-		io.writeLine(reader.readLine());
-	} catch (IOException e) {
-		throw new RuntimeException(e.getMessage());
-	}
+	io.writeObjectLine(handler.send("numbers/" + operation, new double[] {firstNumber, secondNumber}));
 	
 	
 }

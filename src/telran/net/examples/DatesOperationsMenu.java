@@ -5,15 +5,13 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import telran.net.NetworkHandler;
 import telran.view.*;
 
 public class DatesOperationsMenu {
-	static String format = "d/M/y";
-	static PrintStream writer;
-	static BufferedReader reader;
-public static Item getDateOperationsItem(String name, PrintStream writer, BufferedReader reader) {
-	NumbersOperationsMenu.writer = writer;
-	NumbersOperationsMenu.reader = reader;
+	static NetworkHandler handler;
+public static Item getDateOperationsItem(String name, NetworkHandler handler) {
+	DatesOperationsMenu.handler = handler;
 	return Item.of(name, io -> {
 		Item items[] = {
 			Item.of("Date after a given number of days", DatesOperationsMenu::dateAdding),
@@ -32,12 +30,9 @@ static private void dateAfter(InputOutput io, boolean isSubtract) {
 	if (isSubtract) {
 		days = -days;
 	}
-	writer.println(String.format("dates#days#%s#%d", date, days));
-	try {
-		io.writeLine(reader.readLine());
-	} catch (IOException e) {
-		throw new RuntimeException(e.getMessage());
-	}
+	DateDays dateDays = new DateDays(date, days);
+	io.writeObjectLine(handler.send("dates/days", dateDays));
+	
 	
 }
 static void dateAdding(InputOutput io) {
@@ -49,12 +44,8 @@ static void dateSubtracting(InputOutput io) {
 static void daysBetween(InputOutput io) {
 	LocalDate date1 = io.readIsoDate("Enter first Date", "Wrong Date " );
 	LocalDate date2 = io.readIsoDate("Enter second Date", "Wrong Date  " );
-	writer.println(String.format("dates#between#%s#%s", date1, date2));
-	try {
-		io.writeLine(reader.readLine());
-	} catch (IOException e) {
-		throw new RuntimeException(e.getMessage());
-	}
+	
+	io.writeObjectLine(handler.send("dates/between", new LocalDate[] {date1, date2}));
 	
 }
 }
