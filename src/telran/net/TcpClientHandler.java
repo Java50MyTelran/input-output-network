@@ -24,7 +24,7 @@ public class TcpClientHandler implements Closeable, NetworkHandler {
 			writer.writeObject(request);
 			Response response = (Response) reader.readObject();
 			if(response.code() != ResponseCode.OK) {
-				throw new Exception(response.responseData().toString());
+				throw new Exception(response.code() + ": " + response.responseData().toString());
 			}
 			return (T) response.responseData();
 			
