@@ -44,7 +44,7 @@ public class NumbersDatesServerAppl {
 			response = switch(tokens[0]) {
 			case "numbers" -> numbersOperations(tokens);
 			case "dates" -> datesOperations(tokens);
-			default -> "Wrong type";
+			default -> "Wrong type " + tokens[0];
 			};
 		}
 		return response;
@@ -55,7 +55,7 @@ public class NumbersDatesServerAppl {
 			response = switch(tokens[1]) {
 			case "days" -> LocalDate.parse(tokens[2]).plusDays(Integer.parseInt(tokens[3])) + "";
 			case "between" -> ChronoUnit.DAYS.between(LocalDate.parse(tokens[2]), LocalDate.parse(tokens[3])) + "";
-			default -> "Wrong operation";
+			default -> "Wrong operation " + tokens[1];
 			};
 		} catch (Exception e) {
 			response = "Wrong Data";
