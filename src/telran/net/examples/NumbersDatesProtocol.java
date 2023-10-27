@@ -31,13 +31,12 @@ public class NumbersDatesProtocol implements ApplProtocol {
 			case "dates/between" -> date_between(requestData);
 			default -> null;
 			};
-			if (responseData == null) {
-				response = new Response(ResponseCode.WRONG_TYPE, requestType);
-			}
+			response = responseData == null ? new Response(ResponseCode.WRONG_TYPE, requestType) : new Response(ResponseCode.OK, responseData);
+			
 		} catch (Exception e) {
 			response = new Response(ResponseCode.WRONG_DATA, e.getMessage());
 		}
-		response = new Response(ResponseCode.OK, responseData);
+		
 		return response;
 	}
 	private Serializable date_between(Serializable requestData) {
