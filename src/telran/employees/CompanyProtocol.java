@@ -22,16 +22,16 @@ public class CompanyProtocol implements ApplProtocol {
 		Serializable requestData = request.requestData();
 		String requestType = request.requestType();
 		Response response = null;
-		Serializable responseData = null;
+		Serializable responseData = 0;
 		try {
 			responseData = switch (requestType) {
 			case "employee/add" -> employee_add(requestData);
 			case "employee/get" -> employee_get(requestData);
 			case "employees/all" -> employees_all(requestData);
 			case "employee/salary/update" -> employee_salary_update(requestData);
-			default -> null;
+			default -> 0;
 			};
-			response = responseData == null ? new Response(ResponseCode.WRONG_TYPE, requestType)
+			response = responseData == (Integer)0 ? new Response(ResponseCode.WRONG_TYPE, requestType)
 					: new Response(ResponseCode.OK, responseData);
 		} catch (Exception e) {
 			response = new Response(ResponseCode.WRONG_DATA, e.getMessage());

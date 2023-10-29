@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import telran.employees.controller.CompanyController;
+import telran.employees.net.CompanyNetworkProxy;
 import telran.employees.service.*;
 import telran.net.TcpClientHandler;
 import telran.view.*;
@@ -18,9 +19,9 @@ public class CompanyClientAppl {
 		InputOutput io = new SystemInputOutput();
 		try {
 			final TcpClientHandler handler = new TcpClientHandler(HOST, PORT);
-			Company company = new CompanyImpl();
+			Company company = new CompanyNetworkProxy(handler);
 			ArrayList<Item> items = CompanyController.getItems(company);
-			items.add(Item.of("Exit & Save", io1 -> {
+			items.add(Item.of("Exit", io1 -> {
 				try {
 					handler.close();
 				} catch (IOException e) {
