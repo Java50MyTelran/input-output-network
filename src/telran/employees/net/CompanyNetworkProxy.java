@@ -5,6 +5,7 @@ import java.util.List;
 import telran.employees.dto.DepartmentSalary;
 import telran.employees.dto.Employee;
 import telran.employees.dto.SalaryDistribution;
+import telran.employees.dto.UpdateDepartmentData;
 import telran.employees.dto.UpdateSalaryData;
 import telran.employees.service.Company;
 import telran.net.NetworkHandler;
@@ -24,8 +25,8 @@ public class CompanyNetworkProxy implements Company {
 
 	@Override
 	public Employee removeEmployee(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return networkHandler.send("employee/remove", id);
 	}
 
 	@Override
@@ -42,32 +43,28 @@ public class CompanyNetworkProxy implements Company {
 
 	@Override
 	public List<DepartmentSalary> getDepartmentSalaryDistribution() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return networkHandler.send("employees/department/salary/distribution", null);
 	}
 
 	@Override
 	public List<SalaryDistribution> getSalaryDistribution(int interval) {
-		// TODO Auto-generated method stub
-		return null;
+		return networkHandler.send("employees/salary/distribution", interval);
 	}
 
 	@Override
 	public List<Employee> getEmployeesByDepartment(String department) {
-		// TODO Auto-generated method stub
-		return null;
+		return networkHandler.send("employees/department/get", department);
 	}
 
 	@Override
 	public List<Employee> getEmployeesBySalary(int salaryFrom, int salaryTo) {
-		// TODO Auto-generated method stub
-		return null;
+		return networkHandler.send("employees/salary/get", new int[] {salaryFrom, salaryTo});
 	}
 
 	@Override
 	public List<Employee> getEmployeesByAge(int ageFrom, int ageTo) {
-		// TODO Auto-generated method stub
-		return null;
+		return networkHandler.send("employees/age/get", new int[] {ageFrom, ageTo});
 	}
 
 	@Override
@@ -78,8 +75,7 @@ public class CompanyNetworkProxy implements Company {
 
 	@Override
 	public Employee updateDepartment(long id, String department) {
-		// TODO Auto-generated method stub
-		return null;
+		return networkHandler.send("employee/department/update", new UpdateDepartmentData(id, department));
 	}
 
 }

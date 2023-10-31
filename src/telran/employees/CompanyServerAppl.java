@@ -7,7 +7,7 @@ import telran.net.TcpServer;
 public class CompanyServerAppl {
 
 	private static final int PORT = 5000;
-	private static final String DEFAULT_FILE_NAME = "employees";
+	private static final String DEFAULT_FILE_NAME = "employees.data";
 
 	public static void main(String[] args) throws Exception {
 		String fileName = args.length > 0 ? args[0] : DEFAULT_FILE_NAME;
