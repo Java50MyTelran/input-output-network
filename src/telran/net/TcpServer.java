@@ -9,7 +9,7 @@ public class TcpServer implements Runnable {
     private ApplProtocol protocol;
     private ServerSocket serverSocket;
     ExecutorService executor; 
-    int nThreads = /*Runtime.getRuntime().availableProcessors()*/2;
+    int nThreads = Runtime.getRuntime().availableProcessors();
     AtomicInteger clientsCounter = new AtomicInteger(0);
 	public TcpServer(int port, ApplProtocol protocol) throws Exception {
 		this.port = port;
